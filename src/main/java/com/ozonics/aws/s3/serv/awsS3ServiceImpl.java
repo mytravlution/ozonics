@@ -116,31 +116,7 @@ public class awsS3ServiceImpl{
 	        return bucketName+"/"+uniqueFileName;
 	    }
 	    
-//	    public AllBean uploadFileImage(final File file) {
-//	    	AllBean bean = new AllBean();
-//	    	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIA52HWG4RR2PNGLANS", "OiVEpFHHePusDf/9kWkwe2rICo9ghrmLTSInaxWU");
-//			// us-west-2 is AWS Oregon
-//			AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion("us-east-2").withCredentials(new AWSStaticCredentialsProvider(awsCreds))
-//					.build();
-//
-//			// SECTION 1 OPTION 2: Create a S3 client with the aws credentials set in OS (require config and crendentials in .aws folder.) Demonstrate at the end of this video.
-//			//
-////			AmazonS3 s3Client = AmazonS3ClientBuilder.defaultClient();
-//
-//			// SECTION 2: Put file in S3 bucket
-//			//
-//			String bucketName = "ozonics-s3";
-//			String folderName = "folder1";
-//			String fileNameInS3 = "file1.png";
-//			String fileNameInLocalPC = "pics3.png";
-//			  ObjectMetadata objMetadata = new ObjectMetadata();
-//              objMetadata.setContentLength(15L);
-//			PutObjectRequest request = new PutObjectRequest(bucketName, folderName + "/" + fileNameInS3, file);
-//			s3Client.putObject(request);
-//			System.out.println("--Uploading file done");
-//			bean.setStatus(1);
-//	        return bean;
-//	    }
+
 	    
 	
 }
