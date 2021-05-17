@@ -7,13 +7,13 @@ import com.twilio.type.PhoneNumber;
 
 public class TwilioSms {
 
-    public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
-    public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
+//    public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
+//    public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
     
 	
 		static ResourceBundle resource = ResourceBundle.getBundle("resources/web");
-//		 public static final String ACCOUNT_SID = resource.getString("ACCOUNT_SID");
-//		 public static final String AUTH_TOKEN = resource.getString("AUTH_TOKEN");
+		 public static final String ACCOUNT_SID = resource.getString("ACCOUNT_SID");
+		 public static final String AUTH_TOKEN = resource.getString("AUTH_TOKEN");
 
     public String sendMsgViaTwilio(String otp, String phone_num) {
     	System.out.println(System.getenv("TWILIO_ACCOUNT_SID"));
