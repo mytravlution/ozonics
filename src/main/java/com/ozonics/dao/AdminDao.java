@@ -27,6 +27,8 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,7 +45,7 @@ import com.ozonics.aws.s3.serv.awsS3ServiceImpl;
 import com.ozonics.bean.AllBean;
 
 import sun.misc.BASE64Decoder;
-
+@Configuration
 public class AdminDao {
 	JdbcTemplate template;
 
@@ -57,8 +59,6 @@ public class AdminDao {
 	public void setTemplate(JdbcTemplate template) {
 		this.template = template;
 	}
-
-
 
 	int count = 0;
 	int count2 = 0;
