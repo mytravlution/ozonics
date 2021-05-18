@@ -2,3 +2,4 @@
 /*.properties/twilio.env
 twilio.env
 web.properties
+application.yml
