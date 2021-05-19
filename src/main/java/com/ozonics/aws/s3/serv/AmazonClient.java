@@ -37,11 +37,11 @@ public class AmazonClient {
 	@PostConstruct
 	@Bean("AWSCredentialsProvider")
 	public void uploadFileTos3bucket(String fileName, File file, String ext) {
-		String encodedKey = new String(Base64.getDecoder().decode(accessKey));
-		String encodedSecret =new String(Base64.getDecoder().decode(secretKey));
+		String decodedKey = new String(Base64.getDecoder().decode(accessKey));
+		String decodedSecret =new String(Base64.getDecoder().decode(secretKey));
 
 //		System.out.println(encodedKey+"  new id:"+encodedSecret);
-		AWSCredentials credentials = new BasicAWSCredentials(encodedKey, encodedSecret);
+		AWSCredentials credentials = new BasicAWSCredentials(decodedKey, decodedSecret);
 		this.s3client1 = AmazonS3ClientBuilder
 		         .standard()
 		         .withRegion(Regions.US_EAST_2)

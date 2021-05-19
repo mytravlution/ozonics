@@ -1,4 +1,5 @@
 package com.ozonics.api;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 import com.twilio.Twilio;
@@ -18,11 +19,13 @@ public class TwilioSms {
     public String sendMsgViaTwilio(String otp, String phone_num) {
     	System.out.println(System.getenv("TWILIO_ACCOUNT_SID"));
     
-    	
+    	String decodedID = new String(Base64.getDecoder().decode(ACCOUNT_SID));
+		String decodedToken =new String(Base64.getDecoder().decode(AUTH_TOKEN));
+		
     	System.out.println("Twilio Running");
     	System.out.println(phone_num);
-    	System.out.println("id:"+ACCOUNT_SID+"   token:"+AUTH_TOKEN);
-    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    	System.out.println("id:"+decodedID+"   token:"+decodedToken);
+    Twilio.init(decodedID, decodedToken);
     try {
     	String text ="Your Ozonics Account login OTP is "+otp;
     	System.out.println("message:"+text);
