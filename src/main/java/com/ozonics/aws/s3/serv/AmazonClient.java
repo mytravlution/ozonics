@@ -2,11 +2,11 @@ package com.ozonics.aws.s3.serv;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
@@ -31,20 +31,17 @@ public class AmazonClient {
 	ResourceBundle resource = ResourceBundle.getBundle("resources/web");
 	
 	private String bucketName = resource.getString("bucketName");
-//	private String accessKey= resource.getString("accessKey");
-//	private String secretKey=resource.getString("secretKey");
-//	
-	  @Value("${amazonProperties.accessKey}")
-	    private String accessKey;
-	    @Value("${amazonProperties.secretKey}")
-	    private String secretKey;
-
+	private String accessKey= resource.getString("accessKey");
+	private String secretKey=resource.getString("awsseckey");
   
 	@PostConstruct
 	@Bean("AWSCredentialsProvider")
 	public void uploadFileTos3bucket(String fileName, File file, String ext) {
-		System.out.println(accessKey+"  new id:"+secretKey);
-		AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+		String encodedKey = new String(Base64.getDecoder().decode(accessKey));
+		String encodedSecret =new String(Base64.getDecoder().decode(secretKey));
+
+//		System.out.println(encodedKey+"  new id:"+encodedSecret);
+		AWSCredentials credentials = new BasicAWSCredentials(encodedKey, encodedSecret);
 		this.s3client1 = AmazonS3ClientBuilder
 		         .standard()
 		         .withRegion(Regions.US_EAST_2)
