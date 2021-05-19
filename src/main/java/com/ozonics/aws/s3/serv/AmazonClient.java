@@ -33,12 +33,13 @@ public class AmazonClient {
 	private String bucketName = resource.getString("bucketName");
 	private String accessKey= resource.getString("accessKey");
 	private String secretKey=resource.getString("awsseckey");
-  
+	
+	String decodedKey = new String(Base64.getDecoder().decode(accessKey));
+	String decodedSecret =new String(Base64.getDecoder().decode(secretKey));
 	@PostConstruct
 	@Bean("AWSCredentialsProvider")
 	public void uploadFileTos3bucket(String fileName, File file, String ext) {
-		String decodedKey = new String(Base64.getDecoder().decode(accessKey));
-		String decodedSecret =new String(Base64.getDecoder().decode(secretKey));
+	
 
 //		System.out.println(encodedKey+"  new id:"+encodedSecret);
 		AWSCredentials credentials = new BasicAWSCredentials(decodedKey, decodedSecret);
@@ -58,7 +59,7 @@ public class AmazonClient {
 	//to download file
 	@PostConstruct
 	public byte[] downloadFileFrolS3bucket(String fileName, String ext) {
-		AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+		AWSCredentials credentials = new BasicAWSCredentials(decodedKey, decodedSecret);
 		AmazonS3 s3client= AmazonS3ClientBuilder
 		         .standard()
 		         .withRegion(Regions.US_EAST_2)
@@ -81,7 +82,7 @@ public class AmazonClient {
 	//to delete file
 	@PostConstruct
 	public int deleteFileFromS3bucket(String fileName, String ext) {
-		AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+		AWSCredentials credentials = new BasicAWSCredentials(decodedKey, decodedSecret);
 		AmazonS3 s3client= AmazonS3ClientBuilder
 		         .standard()
 		         .withRegion(Regions.US_EAST_2)
